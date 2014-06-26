@@ -14,11 +14,9 @@ Feature: Manage Categories
   Scenario: Successfully add categories
     Given I am on the new categories page
     When I fill in "category_name" with "Foobar"
-    And I fill in "category_permalink" with "foobar"
     And I press "Save"
     Then I should be on the new categories page
     And I should see "Foobar"
-    And I should see "foobar"
 
   Scenario: Successfully edit categories
     Given I am on the new categories page
