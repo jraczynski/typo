@@ -48,7 +48,7 @@ describe Admin::CategoriesController do
 
     it 'should render destroy template' do
       assert_response :success
-      assert_template 'destroy'      
+      assert_template 'destroy'
     end
   end
 
