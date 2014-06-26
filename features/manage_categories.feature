@@ -7,16 +7,22 @@ Feature: Manage Categories
     Given the blog is set up
     And I am logged into the admin panel
 
-  Scenario: Successfully add categories
-    Given I am on the admin categories page
-    When I fill in "category_name" with "Foobar"
-    And I fill in "category_permalink" with "foobar"
-    And I press "Save"
-    Then I should be on the categories page
-    And I should see "Foobar"
-    And I should see "foobar"
+  #Given the following categories exist:
+  #| title     | permalink  |
+  #| Amazon    | amazon     |
 
-  Scenario: Successfully edit categories
-    Given I am on the categories page
-    When I follow "Edit"
-    Then I should be on the categories page
+  Scenario: Successfully add categories
+    When I follow "Categories"
+    Then I should be on the new categories page
+    #Given I am on the admin categories page
+    #When I fill in "category_name" with "Foobar"
+    #And I fill in "category_permalink" with "foobar"
+    #And I press "Save"
+    #Then I should be on the categories page
+    #And I should see "Foobar"
+    #And I should see "foobar"
+
+  #Scenario: Successfully edit categories
+  #  Given I am on the categories page
+  #  When I follow "Edit"
+  #  Then I should be on the categories page
