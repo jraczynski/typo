@@ -13,7 +13,8 @@ Feature: Merge Articles
 
   Scenario: Successfully merge articles
     Given I am on the article page for "Foobar"
-    And I fill in "merge_with" with 3
+    And show me the page
+    And I fill in "merge_with" with "3"
     And I press "Merge"
     Then the article "Foobar" should have body "LoremIpsum LoremIpsum3"
     And show me the page
