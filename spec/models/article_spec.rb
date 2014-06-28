@@ -630,5 +630,19 @@ describe Article do
     end
 
   end
+
+  describe "#merge_with" do
+    before(:each) do
+      @article = Factory.create(:article, :body => "Lorem")
+    end
+    context "with different article" do
+      before(:each) do
+        @another_article = Factory.create(:article, :body => "Ipsum")
+      end
+      it "should return merged article" do
+        @article.merge_with(@another_article.id).body.should == "LoremIpsum"
+      end
+    end
+  end
 end
 

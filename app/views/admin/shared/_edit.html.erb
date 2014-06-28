@@ -4,3 +4,7 @@
   <%= render :partial => "form" %>
 
 <% end %>
+
+<% if current_user.admin? %>
+  <h3>Merge articles</h3>
+<% end %>
