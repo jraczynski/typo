@@ -34,7 +34,11 @@ class Admin::ContentController < Admin::BaseController
       flash[:error] = _("Error, you are not allowed to perform this action")
       return
     end
-    new_or_edit
+    if params[:merge_with]
+      merge_articles
+    else
+      new_or_edit
+    end
   end
 
   def destroy
@@ -92,7 +96,7 @@ class Admin::ContentController < Admin::BaseController
     @article.text_filter = current_user.text_filter if current_user.simple_editor?
 
     get_fresh_or_existing_draft_for_article
-    
+
     @article.attributes = params[:article]
     @article.published = false
     set_article_author
@@ -114,6 +118,17 @@ class Admin::ContentController < Admin::BaseController
   end
 
   protected
+
+  def merge_articles
+    #Write controller test!!!!
+    other_article_id = params[:merge_with]
+    @article = Article.find(params[:id])
+    @article.merge_with(other_article_id)
+    @article.save!
+    Article.find(other_article_id).destroy
+    flash[:notice] = "Articles were merged successfully"
+    redirect_to :action => 'index'
+  end
 
   def get_fresh_or_existing_draft_for_article
     if @article.published and @article.id

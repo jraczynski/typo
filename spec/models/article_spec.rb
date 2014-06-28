@@ -640,7 +640,8 @@ describe Article do
         @another_article = Factory.create(:article, :body => "Ipsum")
       end
       it "should return merged article" do
-        @article.merge_with(@another_article.id).body.should == "LoremIpsum"
+        @article.merge_with(@another_article.id)
+        @article.body.should == "LoremIpsum"
       end
     end
   end
