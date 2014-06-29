@@ -5,7 +5,7 @@
 
 <% end %>
 
-<% if current_user.admin? %>
+<% if params[:action] == 'edit' && current_user.admin? %>
   <h3>Merge articles</h3>
 
   <%= form_tag(:id => params[:id], :enctype => "multipart/form-data") do %>
