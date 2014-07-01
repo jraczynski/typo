@@ -82,6 +82,7 @@ class Article < Content
 
   def merge_with(other_article_id)
     self.body += Article.find(other_article_id).body
+    self.comments += Article.find(other_article_id).comments
     return self
   end
 

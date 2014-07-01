@@ -122,12 +122,17 @@ class Admin::ContentController < Admin::BaseController
   def merge_articles
     #Write controller test!!!!
     other_article_id = params[:merge_with]
-    @article = Article.find(params[:id])
-    @article.merge_with(other_article_id)
-    @article.save!
-    Article.find(other_article_id).destroy
-    flash[:notice] = "Articles were merged successfully"
-    redirect_to :action => 'index'
+    if Article.find(other_article_id)
+      @article = Article.find(params[:id])
+      @article.merge_with(other_article_id)
+      @article.save!
+      Article.find(other_article_id).destroy
+      flash[:notice] = "Articles were merged successfully."
+      redirect_to :action => 'index'
+    else
+      flash[:notice] = "Article with id #{other_article_id} doesn't exist."
+      redirect_to :action => 'index'
+    end
   end
 
   def get_fresh_or_existing_draft_for_article

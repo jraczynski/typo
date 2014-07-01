@@ -643,6 +643,15 @@ describe Article do
         @article.merge_with(@another_article.id)
         @article.body.should == "LoremIpsum"
       end
+      it "should move comments from the other article" do
+        @article.add_comment({:author => 'Admin', :body => "Comment One"})
+        @another_article.add_comment({:author => 'Admin', :body => "Comment Two"})
+        @article.save
+        @another_article.save
+        expected_comments = @article.comments + @another_article.comments
+        @article.merge_with(@another_article.id)
+        @article.comments.should == expected_comments
+      end
     end
   end
 end
